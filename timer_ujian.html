@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Timer Countdown Ujian</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body class="min-h-screen flex flex-col">
+
+<!-- Loading -->
+<div id="loadingScreen" class="loading-screen">
+  <div class="loader"></div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar glass">
+  <div class="navbar-content">
+    <h1>Timer OSCE</h1>
+    <ul class="nav-links">
+      <li><a href="#" onclick="showPage('home')">Beranda</a></li>
+      <li><a href="#" onclick="showPage('panduan')">Panduan</a></li>
+      <li><a href="#" onclick="showPage('tentang')">Tentang</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Home Page -->
+<div id="home" class="page">
+  <div class="flex-grow flex items-center justify-center p-6">
+    <div class="glass w-full max-w-xl p-8 mt-20 text-center">
+      <h2 class="text-2xl font-semibold text-white mb-6">Timer Countdown Ujian</h2>
+
+      <!-- Inputs -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div>
+          <label for="totalWaktu" class="block text-white font-medium mb-1">Waktu Total Ujian (menit):</label>
+          <input type="number" id="totalWaktu" min="1" class="w-full p-3 rounded-lg bg-white bg-opacity-70 backdrop-blur-md"/>
+        </div>
+        <div>
+          <label for="peringatanWaktu" class="block text-white font-medium mb-1">Waktu Peringatan (menit):</label>
+          <input type="number" id="peringatanWaktu" min="1" class="w-full p-3 rounded-lg bg-white bg-opacity-70 backdrop-blur-md"/>
+        </div>
+      </div>
+
+      <!-- Timer Display -->
+      <div id="timerDisplay" class="digital-time-wrapper">
+        <span class="digit" id="min1">0</span>
+        <span class="digit" id="min2">0</span>
+        <span class="colon">:</span>
+        <span class="digit" id="sec1">0</span>
+        <span class="digit" id="sec2">0</span>
+      </div>
+
+      <!-- Buttons -->
+      <div class="button-container mt-6">
+        <button id="startBtn" onclick="persiapanMulai()">Mulai</button>
+        <button id="stopBtn" onclick="pauseTimer()" disabled>Stop</button>
+        <button id="restartBtn" onclick="restartTimer()">Restart</button>
+        <button id="skipBtn" onclick="skipTime()" disabled>Percepat 1 Menit</button>
+      </div>
+
+      <p class="text-sm text-white mt-6 opacity-80">Timer akan mulai setelah suara pembuka selesai.</p>
+    </div>
+  </div>
+</div>
+
+<!-- HALAMAN PANDUAN -->
+<div id="panduan" class="page">
+  <div class="content glass">
+    <h2>Panduan Penggunaan</h2>
+    <p>1. Masukkan <strong>Waktu Total Ujian</strong> dan <strong>Waktu Peringatan</strong> dalam satuan menit.</p>
+    <p>2. Tekan tombol <strong>Mulai</strong> untuk memulai timer. Timer akan menunggu hingga suara pembuka selesai.</p>
+    <p>3. Gunakan tombol <strong>Stop</strong> jika ingin menghentikan sementara waktu.</p>
+    <p>4. Gunakan tombol <strong>Restart</strong> untuk mengatur ulang waktu sesuai input awal.</p>
+    <p>5. Gunakan tombol <strong>Percepat 1 Menit</strong> jika ingin mempercepat waktu mundur sebanyak 60 detik.</p>
+    <p>6. Aplikasi akan mengeluarkan suara peringatan secara otomatis sesuai dengan waktu peringatan yang diimput.</p>
+    <p>7. Saat waktu habis, aplikasi akan mengeluarkan suara akhir dan menghentikan timer.</p>
+    <p>8. Anda dapat mengganti waktu ujian kapan saja, lalu tekan <strong>Restart</strong> untuk mengatur ulang.</p>
+    <p>9. Pastikan suara pada perangkat aktif agar audio dapat terdengar dengan baik.</p>
+    <p>10. Untuk pengalaman terbaik, gunakan aplikasi ini dalam mode layar penuh.</p>
+  </div>
+</div>
+
+
+<!-- HALAMAN TENTANG -->
+<div id="tentang" class="page">
+  <div class="content glass">
+    <h2>Tentang Aplikasi</h2>
+<p style="text-align: justify;">
+  Aplikasi ini dikembangkan oleh <strong>Kelompok 1</strong> dengan tujuan untuk mendukung pelaksanaan ujian OSCE (Objective Structured Clinical Examination) secara digital, efisien, dan akurat. Timer ini membantu penguji dan peserta untuk memantau waktu ujian dengan mudah, mengurangi kesalahan manusia, dan meningkatkan profesionalisme dalam pelaksanaan ujian klinis.
+</p>
+
+<p style="text-align: justify; margin-top: 1rem;">
+  Proyek ini dibangun menggunakan teknologi web seperti <strong>HTML, CSS (Tailwind), dan JavaScript</strong>. Selain itu, desain responsif dan animasi interaktif juga diterapkan agar tampilan lebih menarik dan mudah digunakan di berbagai perangkat.
+</p>
+
+<p style="text-align: justify; margin-top: 1rem;">
+  Dalam proses pengembangan, tim kami memfokuskan diri pada kemudahan penggunaan, kenyamanan visual, dan ketepatan waktu. Harapan kami, aplikasi ini dapat menjadi solusi sederhana namun bermanfaat untuk berbagai kegiatan ujian berbasis waktu, terutama di bidang pendidikan kesehatan.
+</p>
+
+
+    <!-- Tambahan foto tim -->
+    <div class="mt-6 flex justify-center">
+      <img src="img.jpg" alt="Foto Tim" class="w-64 rounded-xl shadow-xl border-4 border-white">
+    </div>
+    <p class="mt-2 text-center text-white">Tim Pengembang - Kelompok 1</p>
+  </div>
+</div>
+
+
+<!-- Audio -->
+<audio id="startSound" src="start.mp3"></audio>
+<audio id="reminderSound" src="reminder.mp3"></audio>
+<audio id="endSound" src="end.mp3"></audio>
+
+<script src="script.js"></script>
+</body>
+</html>
